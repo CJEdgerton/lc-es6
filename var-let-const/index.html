@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+</head>
+<body style="padding-top:50px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><code>var</code> and hoisting Explaination</h3>
+					</div>
+					<div class="panel-body">
+						<p>
+							Both blocks below perform the same. When using assigning value to a variable using <code>var</code>, the variable declaration is "hoisted" to the top of the function. It essentiall declared but not defined throughout the function. 
+						</p>
+						<p>
+							Check the console to use the functions.
+						</p>
+
+<pre>
+<code class="javascript">
+function myFoo(bool) {
+	if( bool ) {
+		var foo = 'bar';
+		console.log(foo); // outputs 'bar'
+	} else {
+		console.log(foo); // outputs undefined
+		console.log(myVar); // outputs uncaught reference error: myVar is not defined.
+	}
+}
+</code>
+</pre>			
+								<hr>
+<pre>
+<code class="javascript">
+function myBar(bool) {
+	var foo;
+	if( bool ) {
+		foo = 'bar';
+		console.log(foo); // outputs 'bar'
+	} else {
+		console.log(foo); // outputs undefined
+		console.log(myVar); // outputs uncaught reference error: myVar is not defined.
+	}
+}
+</code>
+</pre>
+					</div>
+				</div>
+
+				<hr style="margin:30px 0px">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><code>let</code></h3>
+					</div>
+					<div class="panel-body">
+						<p>Defining variables with <code>let</code> does not hoist like var does. Refering to the example below:</p>
+<pre>
+<code class="javascript">
+function myBaz(bool) {
+	if( bool ) {
+		let foo = 'bar'; // using 'let' does not hoist the declaration
+		console.log(foo); // outputs 'bar'
+	} else {
+		console.log(foo); // outputs uncaught reference error: foo is not defined
+		console.log(myVar); // outputs uncaught reference error: myVar is not defined.
+	}
+}
+</code>
+</pre>	
+
+					</div>
+				</div>
+
+				<hr style="margin:30px 0px">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><code>const</code></h3>
+					</div>
+					<div class="panel-body">
+						<p>Declaration with <code>const</code> disables reassignment on a variable. It does not however mean that it is immutable.</p>
+<pre>
+<code class="javascript">
+const colors = ['White', 'Gray', 'Black'];
+
+colors = ['Red', 'White', 'Blue']; // Throws...  Uncaught TypeError: Assignment to constant variable.
+
+/* *** However, using const does not mean that colors is immutable... *** */
+
+colors.push('Magenta'); // This works and colors becomes...
+console.log('colors'); // Outputs ['White', 'Gray', 'Black', 'Magenta'];
+</code>
+</pre>	
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript" src="./app.js"></script>
+</body>
+</html>
