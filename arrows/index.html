@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!-- View console -->
+	<script>
+		class TaskCollection {
+			constructor(tasks = []) {
+				this.tasks = tasks;
+			}
+
+			perform() {
+				this.tasks.forEach( task => task.complete() );
+			}
+		}
+
+		class Task {
+			complete() {
+				console.log('completing task.');
+			}
+		}
+
+		new TaskCollection([
+			new Task,
+			new Task,
+		]).perform();
+	
+	</script>
+</body>
+</html>
