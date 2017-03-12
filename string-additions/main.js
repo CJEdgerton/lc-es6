@@ -2,7 +2,7 @@ let title = "Bob's Journey";
 	
 	// Searching string
 		// Old way
-		if( title.indexOf('Bob') >= 0 ) {
+		if( title.indexOf('Bob') > -1 ) {
 			console.log( 'Title includes Bob' );
 		}
 
